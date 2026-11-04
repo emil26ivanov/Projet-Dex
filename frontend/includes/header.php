@@ -7,9 +7,15 @@
 </head>
 <body>
     <header>
-        <h1>Titre h1</h1>
-
-        <p>un paragraphe</p>
+        <nav class="navigation">
+            <div class="logo-container">
+                <p class="logo">Dex</p>
+            </div>
+            <div class="links-container">
+                <a class="home-link">home</p>
+                <a class="admin-link">admin</p>
+            </div>
+        </nav>
     </header>
 
     <main>
