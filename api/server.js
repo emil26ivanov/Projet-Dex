@@ -56,13 +56,13 @@ app.get('/api/cours', async (req, res) => {
 // Travaux ouverts. Peut être limité à un cours.
 app.get('/api/travaux', async (req, res) => {
     try {
-        // get the params if any
+        // get the url query if any
         const coursId = req.query.cours
         // default sql
         let sql = "SELECT * FROM travaux WHERE ouvert = 1"
         const params = []
 
-        // if params !empty add in query
+        // if url query !empty add in query
         if (coursId) {
             sql += " And cours_id = ?"
             params.push(coursId)
@@ -134,7 +134,7 @@ app.get('/api/travaux/:id/disponibilites', async (req, res) => {
         // query
         const [rows] = await db.query(sql, [travailId])
 
-        // 
+        // output
         const dispos = rows.map(row => ({
             ...row,
             noms: row.noms ? row.noms.split(',') : []
