@@ -16,11 +16,18 @@ export async function getCours() {
     }
 }
 
-export async function getTravaux() {
+export async function getTravaux(id) {
     try {
+        let res
+        if (id === '') {
+            // fetch without query
+            res = await fetch(`${API_URL}/travaux`)
 
-        
-        const res = await fetch(`${API_URL}/travaux`)
+
+        } else {
+            // fetch with query
+            res = await fetch(`${API_URL}/travaux?cours=${id}`)
+        }
         if (!res.ok) throw new Error("response error")
         const data = await res.json()
 

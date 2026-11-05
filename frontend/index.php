@@ -7,10 +7,10 @@ require_once __DIR__ . '/includes/header.php';
 <div id="app">
     <h1 class="page-title">Liste de travaux ouverts</h1>
 
-    <form method="get">
+    <form @submit.prevent="submitPreventFN">
         <label for="cours">filter par cours :</label>
-        <select name="cours" id="cours">
-            <option :value="">Tous les cours</option>
+        <select v-model="courId" id="cours">
+            <option value="">Tous les cours</option>
             <option v-for="cour in cours" :key="cour.id" :value="cour.id">{{ cour.titre }}</option>
         </select>
         <button type="submit">Filtrer</button>
@@ -18,8 +18,8 @@ require_once __DIR__ . '/includes/header.php';
 
     <p v-show="!travauxIsPopulated" class="no-cours">Aucun travail ouvert pour le moment</p>            
     
-    <template v-for="cour in cours" :key="cour.id">
-        <div v-if="matchTravaux(cour.id).length > 0" class="cour-container">
+    <template v-for="cour in coursAffiche" :key="cour.id">
+        <div class="cour-container">
             <h2 class="cours-title">{{ cour.titre }}</h2>
             <div v-for="travail in matchTravaux(cour.id)" :key="travail.id" class="travail-container">
                 <h4 class="travail-title">{{ travail.titre }}</h4>
