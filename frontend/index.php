@@ -10,22 +10,26 @@ require_once __DIR__ . '/includes/header.php';
     <form method="get">
         <label for="cours">filter par cours :</label>
         <select name="cours" id="cours">
-            <option value="">Tous les cours</option>
-            <option v-for="cour in cours" :key="cours.id" value="cour.titre">{{ cour.titre }}</option>
+            <option :value="">Tous les cours</option>
+            <option v-for="cour in cours" :key="cour.id" :value="cour.id">{{ cour.titre }}</option>
         </select>
+        <button type="submit">Filtrer</button>
     </form>
 
-    <p v-show="!coursIsPopulated" class="no-cours">Aucun travail ouvert pour le moment</p>            
+    <p v-show="!travauxIsPopulated" class="no-cours">Aucun travail ouvert pour le moment</p>            
     
-    <div v-show="coursIsPopulated" v-for="cour in cours" :key="cour.id" class="cour-container">
-        <h2 class="cours-title">{{ cour.titre }}</h2>
-        <div class="travail-container">
-                <h4 class="travail-title">travail</h4>
-                <p class="travail-type">type</p>
-                <p class="travail-date">date</p>
-            <button class="voir-travail">Voir travail</button>
+    <template v-for="cour in cours" :key="cour.id">
+        <div v-if="matchTravaux(cour.id).length > 0" class="cour-container">
+            <h2 class="cours-title">{{ cour.titre }}</h2>
+            <div v-for="travail in matchTravaux(cour.id)" :key="travail.id" class="travail-container">
+                <h4 class="travail-title">{{ travail.titre }}</h4>
+                <p class="travail-type">{{ travail.type }}</p>
+                <p class="travail-date">{{ travail.remise }}</p>
+                <button class="voir-travail">Voir travail</button>
+            </div>
         </div>
-    </div>
+    </template>
+    
 </div>
 
 <script type="module" src="./js/index.js"></script>

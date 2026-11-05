@@ -62,7 +62,7 @@ app.get('/api/travaux', async (req, res) => {
         let sql = "SELECT * FROM travaux WHERE ouvert = 1"
         const params = []
 
-        // if url query !empty add in query
+        // if url query not empty add in query
         if (coursId) {
             sql += " And cours_id = ?"
             params.push(coursId)
