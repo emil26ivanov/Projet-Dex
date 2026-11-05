@@ -12,8 +12,8 @@
                 <p class="logo">Dex</p>
             </div>
             <div class="links-container">
-                <a class="home-link">home</p>
-                <a class="admin-link">admin</p>
+                <a class="home-link">home</a>
+                <a class="admin-link">admin</a>
             </div>
         </nav>
     </header>
