@@ -23,7 +23,7 @@ createApp({
             return travaux.value.filter(travail => travail.cours_id === id)
         }
 
-        // c + clean url if no filter chosen
+        // manage urls manualy + clean url if no filter chosen
         function urlHandler() {
             if (courId.value === '') window.location.href = 'index.php'
             else window.location.href = `index.php?cours=${courId.value}`

@@ -39,3 +39,17 @@ export async function getTravaux(id) {
     }
 }
 
+export async function getTravail(id) {
+    try {
+        const res = await fetch(`${API_URL}/travaux/${id}`)
+        if (!res.ok) throw new Error("response error")
+        const data = await res.json()
+
+        //return filled object
+        return data;
+    } catch (err) {
+        console.error(err)
+        return [];
+    }
+}
+

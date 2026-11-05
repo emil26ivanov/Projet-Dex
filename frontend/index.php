@@ -25,7 +25,7 @@ require_once __DIR__ . '/includes/header.php';
                 <h4 class="travail-title">{{ travail.titre }}</h4>
                 <p class="travail-type">{{ travail.type }}</p>
                 <p class="travail-date">{{ travail.remise }}</p>
-                <button class="voir-travail">Voir travail</button>
+                <a :href="'travail.php?travail=' + travail.id" class="voir-travail">Voir travail</a>
             </div>
         </div>
     </template>
