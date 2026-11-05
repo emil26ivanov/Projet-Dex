@@ -24,7 +24,7 @@ createApp({
         }
 
         // c + clean url if no filter chosen
-        function submitPreventFN() {
+        function urlHandler() {
             if (courId.value === '') window.location.href = 'index.php'
             else window.location.href = `index.php?cours=${courId.value}`
         }
@@ -39,7 +39,7 @@ createApp({
             courId,
             coursAffiche,
             matchTravaux,
-            submitPreventFN
+            urlHandler
         }
     },
 }).mount('#app')

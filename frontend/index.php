@@ -7,7 +7,7 @@ require_once __DIR__ . '/includes/header.php';
 <div id="app">
     <h1 class="page-title">Liste de travaux ouverts</h1>
 
-    <form @submit.prevent="submitPreventFN">
+    <form @submit.prevent="urlHandler">
         <label for="cours">filter par cours :</label>
         <select v-model="courId" id="cours">
             <option value="">Tous les cours</option>
