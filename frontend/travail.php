@@ -12,7 +12,7 @@ require_once __DIR__ . '/includes/header.php';
         <p>{{ travail.remise }}</p>
     </div>
     <div class="travail-form-container">
-        <form class="travail" action="post">
+        <form class="travail">
             <label class="matricule-label" for="matricule">
                 Matricule :
             </label>
@@ -21,12 +21,18 @@ require_once __DIR__ . '/includes/header.php';
                 Nom :
             </label>
             <input class="nom-input" type="text" id="nom">
-            <label>
+            <label 
+                v-for="creneau in travail.creneaux"
+                :key="creneau.id"
+            >
                 <input
                     type="checkbox"
-                    name="crenaux[]"
-                    value="crenau.id"
+                    :value="creneau.id"
                 >
+                <span>
+                    {{ creneau.debut }} à {{ creneau.fin }}
+                </span>
+                
             </label>
             <button class="form-submit-button" type="submit">
                 Enregistrer mes disponibilités

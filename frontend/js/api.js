@@ -49,6 +49,15 @@ export async function getTravail(id) {
         return data;
     } catch (err) {
         console.error(err)
+        return {};
+    }
+}
+
+export async function getDisponibilite() {
+    try {
+        return [];
+    } catch (err) {
+        console.error(err)
         return [];
     }
 }

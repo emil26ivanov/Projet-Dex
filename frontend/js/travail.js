@@ -5,12 +5,13 @@ createApp({
     setup() {
         const queryString = window.location.search
         const urlParams = new URLSearchParams(queryString)
-        const travail = ref()
+        const travail = ref({})
 
         getTravail(urlParams.get('travail')).then(data => travail.value = data)
 
+
         return {
-            travail,
+            travail
         }
     },
 }).mount('#app')
