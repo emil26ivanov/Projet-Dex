@@ -45,7 +45,7 @@ export async function getTravail(id) {
         if (!res.ok) throw new Error("response error")
         const data = await res.json()
 
-        //return filled object
+        // return filled object
         return data;
     } catch (err) {
         console.error(err)
@@ -53,12 +53,38 @@ export async function getTravail(id) {
     }
 }
 
-export async function getDisponibilite() {
+export async function getDisponibilites(id) {
     try {
-        return [];
+        const res = await fetch(`${API_URL}/travaux/${id}/disponibilites`)
+        if (!res.ok) throw new Error("response error")
+        const data = await res.json()
+
+        // return all dispos of a travail
+        return data;
     } catch (err) {
         console.error(err)
         return [];
+    }
+}
+
+export async function addDisponibilites(id, disponibilites) {
+    const url = `${API_URL}/travaux/${id}/disponibilites`
+    try {
+        const res = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(disponibilites)
+        })
+        if (!res.ok) throw new Error("response error")
+
+        const data = await res.json()
+
+        return data;
+    } catch (err) {
+        console.error(err)
+        return null
     }
 }
 
