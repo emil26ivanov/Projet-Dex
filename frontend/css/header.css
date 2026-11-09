@@ -13,9 +13,12 @@
     font-size: 24px;
     font-weight: var(--bold);
     color: black;
+    padding: 0px 8px;
 }
 
-.navigation {}
+.navigation {
+    padding: 0px 8px;
+}
 
 .nav-link {
     font-family: var(--body-font);
