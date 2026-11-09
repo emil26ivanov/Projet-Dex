@@ -1,0 +1,84 @@
+:root {
+    /**/
+    /*colors*/
+    --primary: #353974;
+    --secondary: #5359BB;
+    --white: #FFFFFF;
+    --black: #000000;
+    --grey: #4a4a4a;
+    /*font sizes*/
+    --headings: 48px;
+    --titles: 32px;
+    --subtitles: 24px;
+    --body-text: 16px;
+    --small-text: 12px;
+    /*fonts*/
+    --header-font: "Arvo", serif;
+    --body-font: "Inter", sans-serif;
+    --style: normal;
+    /*weights*/
+    --bold: 700;
+    --regular: 400;
+    /*spacings*/
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+    --space-9: 96px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    margin: 0px 128px;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    font-weight: var(--bold);
+}
+
+h1 {
+    font-size: var(--headings);
+    font-family: var(--header-font);
+}
+
+h2 {
+    font-size: var(--titles);
+    font-family: var(--header-font);
+}
+
+h3 {
+    font-size: var(--subtitles);
+    font-family: var(--header-font);
+}
+
+p {
+    font-family: var(--body-font);
+    font-size: var(--body-text);
+}
+
+label {
+    font-family: var(--body-font);
+}
+
+button {
+    font-family: var(--body-font);
+}
+
+select {
+    font-family: var(--body-font);
+}
+
+a {
+    font-family: var(--body-font);
+}
