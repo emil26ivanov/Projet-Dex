@@ -1,6 +1,7 @@
 <?php
 
 $pageTitle = '404';
+$pageCss = '404';
 require_once __DIR__ . '/includes/header.php';
 ?>
 

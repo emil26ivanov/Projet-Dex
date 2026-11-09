@@ -1,6 +1,7 @@
 <?php
 
 $pageTitle = 'Home';
+$pageCss = 'index';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
@@ -22,7 +23,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="cour-container">
             <h2 class="cours-title">{{ cour.titre }}</h2>
             <div v-for="travail in matchTravaux(cour.id)" :key="travail.id" class="travail-container">
-                <h4 class="travail-title">{{ travail.titre }}</h4>
+                <h3 class="travail-title">{{ travail.titre }}</h4>
                 <p class="travail-type">{{ travail.type }}</p>
                 <p class="travail-date">{{ travail.remise }}</p>
                 <a :href="'travail.php?travail=' + travail.id" class="voir-travail">Voir travail</a>
