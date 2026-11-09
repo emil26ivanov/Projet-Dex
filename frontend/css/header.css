@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    margin: 12px 96px;
+    outline: auto;
+    border-radius: 30px;
+}
+
+.logo {
+    font-family: var(--header-font);
+    font-size: 24px;
+    font-weight: var(--bold);
+    color: black;
+}
+
+.navigation {}
+
+.nav-link {
+    font-family: var(--body-font);
+    font-size: var(--body-text);
+    text-decoration: none;
+    color: var(--primary);
+    padding: 12px 8px;
+}
