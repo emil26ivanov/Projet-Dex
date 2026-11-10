@@ -1,17 +1,19 @@
 :root {
     /**/
     /*colors*/
-    --primary: #353974;
-    --secondary: #5359BB;
-    --white: #FFFFFF;
-    --black: #000000;
-    --grey: #4a4a4a;
+    --primary: #1A377A;
+    --secondary: #3066BE;
+    --contrast: #FFE74C;
+    --white: #E5E9EC;
+    --black: #323031;
+    --gray: gray;
     /*font sizes*/
     --headings: 48px;
     --titles: 32px;
     --subtitles: 24px;
-    --body-text: 16px;
-    --small-text: 12px;
+    --body-text: 20px;
+    --small-text: 16px;
+    --labels: 12px;
     /*fonts*/
     --header-font: "Arvo", serif;
     --body-font: "Inter", sans-serif;
@@ -19,16 +21,6 @@
     /*weights*/
     --bold: 700;
     --regular: 400;
-    /*spacings*/
-    --space-1: 4px;
-    --space-2: 8px;
-    --space-3: 12px;
-    --space-4: 16px;
-    --space-5: 24px;
-    --space-6: 32px;
-    --space-7: 48px;
-    --space-8: 64px;
-    --space-9: 96px;
 }
 
 * {
@@ -37,29 +29,23 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
     margin: 0px 128px;
 }
 
-h1,
-h2,
-h3 {
-    font-family: var(--font-heading);
+h1 {
     font-weight: var(--bold);
 }
 
 h1 {
+    font-family: var(--header-font);
     font-size: var(--headings);
-    font-family: var(--header-font);
-}
-
-h2 {
-    font-size: var(--titles);
-    font-family: var(--header-font);
-}
-
-h3 {
-    font-size: var(--subtitles);
-    font-family: var(--header-font);
 }
 
 p {
