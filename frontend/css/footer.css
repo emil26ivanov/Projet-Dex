@@ -1,0 +1,10 @@
+.footer {
+    background-color: var(--black);
+    padding: 24px 128px;
+
+}
+
+.footer-text {
+    font-size: var(--small-text);
+    color: var(--gray);
+}
