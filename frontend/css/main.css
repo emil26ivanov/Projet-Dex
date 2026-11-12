@@ -41,9 +41,6 @@ main {
 
 h1 {
     font-weight: var(--bold);
-}
-
-h1 {
     font-family: var(--header-font);
     font-size: var(--headings);
 }

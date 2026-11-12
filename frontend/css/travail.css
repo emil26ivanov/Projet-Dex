@@ -1,0 +1,60 @@
+.page-title {
+    margin-top: 64px;
+    margin-bottom: 24px;
+    color: var(--black);
+}
+
+.travail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.travail-info-container {}
+
+.travail-titre {
+    color: var(--black);
+    font-weight: var(--bold);
+    font-size: var(--titles);
+    font-family: var(--header-font);
+    margin-bottom: 12px;
+}
+
+.travail-info {
+    color: black;
+    font-weight: var(--regular);
+    font-size: var(--body-text);
+    margin-bottom: 8px;
+}
+
+.travail-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid black;
+    padding: 36px;
+    border-radius: 20px;
+}
+
+.labels {}
+
+.inputs {
+    border: 1px solid var(--black);
+    border-radius: 20px;
+    padding: 12px 16px;
+    background-color: lightgray;
+    min-width: 240px;
+}
+
+.checkbox {
+    margin-right: 12px;
+}
+
+.form-submit-button {
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 20px;
+    color: var(--black);
+    background-color: var(--contrast);
+    margin: 24px;
+}
