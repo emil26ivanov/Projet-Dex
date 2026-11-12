@@ -31,11 +31,11 @@
 
 .nav-link {
     display: block;
-    border-radius: 20px;
+    border-radius: var(--control-radius);
     transition: background-color 0.3s ease;
     text-decoration: none;
     color: black;
-    padding: 12px 16px;
+    padding: var(--control-padding);
     font-family: var(--body-font);
     font-size: var(--labels);
 }

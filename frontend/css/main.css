@@ -21,6 +21,9 @@
     /*weights*/
     --bold: 700;
     --regular: 400;
+    /*controls (buttons, links, inputs, select)*/
+    --control-padding: 12px 16px;
+    --control-radius: 20px;
 }
 
 * {
@@ -37,6 +40,7 @@ body {
 main {
     flex: 1;
     margin: 0px 128px;
+    min-height: 100vh;
 }
 
 h1 {

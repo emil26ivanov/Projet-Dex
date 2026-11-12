@@ -5,6 +5,8 @@
 }
 
 .filter-container {
+    /* flex makes the select and button the same height */
+    display: flex;
     margin-bottom: 24px;
 }
 
@@ -12,20 +14,27 @@
     border: 0;
     color: var(--black);
     background-color: lightgray;
-    padding: 8px 12px;
-    border-radius: 20px 0px 0px 20px;
+    padding: var(--control-padding);
+    border-radius: var(--control-radius) 0 0 var(--control-radius);
 }
 
 .filter-button {
-    padding: 9px 12px;
+    padding: var(--control-padding);
     border: 0;
-    border-radius: 0 20px 20px 0;
+    border-radius: 0 var(--control-radius) var(--control-radius) 0;
     color: var(--black);
     background-color: var(--contrast);
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.empty {}
+.filter-button:hover {
+    background-color: color-mix(in srgb, var(--contrast) 80%, black);
+}
+
+.empty {
+    font-family: var(--small-text);
+}
 
 .cards {
     display: grid;
@@ -72,8 +81,13 @@
     color: var(--black);
     text-decoration: none;
     background-color: var(--contrast);
-    padding: 8px 12px;
-    border-radius: 20px;
+    padding: var(--control-padding);
+    border-radius: var(--control-radius);
     text-align: center;
     margin-top: auto;
+    transition: background-color 0.3s ease;
+}
+
+.travail-link:hover {
+    background-color: color-mix(in srgb, var(--contrast) 80%, black);
 }

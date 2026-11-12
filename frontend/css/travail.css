@@ -10,8 +10,6 @@
     gap: 24px;
 }
 
-.travail-info-container {}
-
 .travail-titre {
     color: var(--black);
     font-weight: var(--bold);
@@ -30,24 +28,38 @@
 .travail-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     border: 1px solid black;
     padding: 36px;
     border-radius: 20px;
 }
 
-.labels {}
+.labels {
+    font-size: var(--labels);
+    font-weight: var(--bold);
+    margin-left: 16px;
+    margin-bottom: 4px;
+}
 
 .inputs {
-    border: 1px solid var(--black);
-    border-radius: 20px;
-    padding: 12px 16px;
+    border: 0;
+    border-radius: var(--control-radius);
+    padding: var(--control-padding);
     background-color: lightgray;
     min-width: 240px;
+    margin-bottom: 12px;
+}
+
+.creneaux {
+    margin-top: 12px;
+}
+
+.creneau-label {
+    margin-bottom: 8px;
 }
 
 .checkbox {
     margin-right: 12px;
+    cursor: pointer;
 }
 
 /* names of people already available, on their own line under the slot */
@@ -61,10 +73,16 @@
 }
 
 .form-submit-button {
-    padding: 12px 16px;
+    padding: var(--control-padding);
     border: 0;
-    border-radius: 20px;
+    border-radius: var(--control-radius);
     color: var(--black);
     background-color: var(--contrast);
-    margin: 24px;
+    margin-top: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit-button:hover {
+    background-color: color-mix(in srgb, var(--contrast) 80%, black);
 }

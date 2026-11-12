@@ -1,0 +1,66 @@
+main {
+    display: grid;
+    margin: 0;
+    margin-top: -56px;
+}
+
+#app {
+    display: grid;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 12px 0 24px rgba(0, 0, 0, 0.3);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: var(--labels);
+    font-weight: var(--bold);
+    margin-left: 16px;
+    margin-bottom: 4px;
+}
+
+.input {
+    border: 0;
+    border-radius: var(--control-radius);
+    padding: var(--control-padding);
+    background-color: lightgray;
+    min-width: 300px;
+    margin-bottom: 12px;
+}
+
+.login-btn {
+    padding: var(--control-padding);
+    border: 0;
+    border-radius: var(--control-radius);
+    color: var(--black);
+    background-color: var(--contrast);
+    margin-top: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: color-mix(in srgb, var(--contrast) 80%, black);
+}
+
+.background-image {
+    background-image: url('../assets/images/image2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
