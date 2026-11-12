@@ -1,5 +1,6 @@
 import { createApp, ref } from 'https://unpkg.com/vue@3.5/dist/vue.esm-browser.js'
 import { getDisponibilites, addDisponibilites, getTravail } from './api.js'
+import { dateFormat } from './services/dateFormat.js'
 
 createApp({
     setup() {
@@ -37,7 +38,8 @@ createApp({
             nom,
             creneaux,
             matchDispos,
-            enregistrer
+            enregistrer,
+            dateFormat
         }
     },
 }).mount('#app')

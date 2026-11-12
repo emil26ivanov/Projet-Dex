@@ -1,5 +1,6 @@
 import { createApp, ref, computed } from 'https://unpkg.com/vue@3.5/dist/vue.esm-browser.js'
 import { getCours, getTravaux } from './api.js'
+import { dateFormat } from './services/dateFormat.js'
 
 createApp({
     setup() {
@@ -39,7 +40,8 @@ createApp({
             courId,
             coursAffiche,
             matchTravaux,
-            urlHandler
+            urlHandler,
+            dateFormat
         }
     },
 }).mount('#app')
