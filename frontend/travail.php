@@ -5,13 +5,13 @@ $pageCss = 'travail';
 require_once __DIR__ . '/includes/header.php';
 ?>
 <div id="app">
-    <h1 class="page-title">Details du travail</h1>
+    <h1 class="page-title">Détails du travail</h1>
     <div class="travail">
         <div class="travail-info-container">
             <h2 class="travail-titre">{{ travail.titre }}</h2>
             <p class="travail-info">{{ travail.description }}</p>
-            <p class="travail-info">{{ travail.type }}</p>
-            <p class="travail-info">{{ travail.remise }}</p>
+            <p class="travail-info"><b>Type: </b>{{ travail.type }}</p>
+            <p class="travail-info"><b>Remise: </b>{{ dateFormat(travail.remise) }}</p>
         </div>
         <div class="travail-form-container">
             <form class="travail-form" 
@@ -23,7 +23,7 @@ require_once __DIR__ . '/includes/header.php';
                     class="inputs" 
                     type="text" 
                     required
-                    placeholder="matricule"
+                    placeholder="ex. 2134567"
                     >
                 </label>
                 <label class="labels">
@@ -33,7 +33,7 @@ require_once __DIR__ . '/includes/header.php';
                     class="inputs" 
                     type="text" 
                     required
-                    placeholder="nom"
+                    placeholder="ex. john"
                     >
                 </label>
                 <label 
@@ -48,12 +48,14 @@ require_once __DIR__ . '/includes/header.php';
                         class="checkbox"
                     >
                     <span>
-                        {{ creneau.debut }} à {{ creneau.fin }}
+                        {{ dateFormat(creneau.debut, true) }} - {{ dateFormat(creneau.fin, true) }}
                     </span>
-                    <span v-for="dispo in matchDispos(creneau.id)" :key="dispo.id">
-                        <span v-for="(n, i) in dispo.noms" :key="i">
-                            {{ n }}
-                        </span>
+                    <span
+                        class="creneau-noms"
+                        v-for="dispo in matchDispos(creneau.id)"
+                        :key="dispo.id"
+                    >
+                        {{ dispo.noms.join(', ') }}
                     </span>
                 
                 </label>

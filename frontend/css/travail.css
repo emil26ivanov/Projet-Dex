@@ -50,6 +50,16 @@
     margin-right: 12px;
 }
 
+/* names of people already available, on their own line under the slot */
+.creneau-noms {
+    display: block;
+    /* lines the names up with the slot text, past the checkbox */
+    margin-left: 25px;
+    margin-top: 4px;
+    font-size: var(--small-text);
+    color: var(--gray);
+}
+
 .form-submit-button {
     padding: 12px 16px;
     border: 0;

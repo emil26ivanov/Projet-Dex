@@ -22,8 +22,8 @@ require_once __DIR__ . '/includes/header.php';
             <div v-for="travail in matchTravaux(cour.id)" :key="travail.id" class="travail-container"> 
                 <p class="cour-title">{{ cour.titre }}</p>
                 <p class="travail-title">{{ travail.titre }}</p>
-                <p class="travail-type">{{ travail.type }}</p>
-                <p class="travail-date">{{ travail.remise }}</p>
+                <p class="travail-type"><b>Type: </b>{{ travail.type }}</p>
+                <p class="travail-date"><b>Remise: </b>{{ dateFormat(travail.remise) }}</p>
                 <a class="travail-link" :href="'travail.php?travail=' + travail.id">Voir travail</a>
             </div>
         </template>
