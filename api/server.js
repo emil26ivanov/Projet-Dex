@@ -18,6 +18,7 @@ const PORT = process.env.PORT
 app.use(express.json())
 app.use(cors())
 
+
 // db connection
 const db = mysql.createPool({
     host: process.env.DB_HOST,
@@ -25,6 +26,21 @@ const db = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 })
+
+// -- auth middleware
+function auth(req, res, next) {
+    const header = req.headers.authorization
+
+    if (!header || !header.startsWith('Bearer ')) return res.status(401).json({ error: "non authentifiee" })
+
+    const token = header.slice(7)
+    if (!tokens.has(token)) return res.status(401).json({ error: "non authentifiee" })
+
+    req.utilisateurId = tokens.get(token)
+    req.token = token
+
+    next()
+}
 
 // -- routes --
 
@@ -201,14 +217,14 @@ app.post('/api/connexion', async (req, res) => {
         //query
         const [rows] = await db.query(sql, [identifiant])
         //check if user found
-        if (rows.length === 0) return res.status(401).json({ error: "identifiaant invalide" })
+        if (rows.length === 0) return res.status(401).json({ error: "identifiant invalide" })
 
         const user = rows[0]
         //compare pwd
         const checkPwd = await bcrypt.compare(motDePasse, user.mot_de_passe_hache)
 
         //check pwd
-        if (!checkPwd) return res.status(401).json({ error: "identifiaant invalide" })
+        if (!checkPwd) return res.status(401).json({ error: "identifiant invalide" })
 
         //create token
         const token = crypto.randomUUID()
@@ -223,6 +239,12 @@ app.post('/api/connexion', async (req, res) => {
         console.error(err)
         res.status(500).json({ error: 'server error' })
     }
+})
+
+// deconnexion
+app.post('/api/deconnexion', auth, (req, res) => {
+    tokens.delete(req.token)
+    res.json({ message: "Déconnecté" })
 })
 
 app.listen(PORT, () => {
