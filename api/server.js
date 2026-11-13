@@ -3,6 +3,9 @@ const express = require('express')
 const mysql = require('mysql2/promise')
 const cors = require('cors')
 const dotenv = require('dotenv')
+const bcrypt = require('bcryptjs')
+const crypto = require('crypto')
+const tokens = new Map()
 
 // dotenv
 dotenv.config()
@@ -183,6 +186,42 @@ app.put('/api/travaux/:id/disponibilites', async (req, res) => {
     } catch (err) {
         console.error(err)
         res.status(500).json({ error: 'Server error' })
+    }
+})
+
+//Cherche l’utilisateur par son identifiant (requête préparée), vérifie le mot de passe et crée un jeton.
+app.post('/api/connexion', async (req, res) => {
+    try {
+        //get values
+        const { identifiant, motDePasse } = req.body
+        //check if values not empty
+        if (!identifiant || !motDePasse) return res.status(400).json({ error: "champs manquant" })
+        //prepare sql
+        const sql = "SELECT * FROM utilisateurs WHERE identifiant = ?"
+        //query
+        const [rows] = await db.query(sql, [identifiant])
+        //check if user found
+        if (rows.length === 0) return res.status(401).json({ error: "identifiaant invalide" })
+
+        const user = rows[0]
+        //compare pwd
+        const checkPwd = await bcrypt.compare(motDePasse, user.mot_de_passe_hache)
+
+        //check pwd
+        if (!checkPwd) return res.status(401).json({ error: "identifiaant invalide" })
+
+        //create token
+        const token = crypto.randomUUID()
+
+        //link token to user
+        tokens.set(token, user.id)
+
+        //send data
+        res.json({ token: token, nom: user.nom })
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ error: 'server error' })
     }
 })
 
