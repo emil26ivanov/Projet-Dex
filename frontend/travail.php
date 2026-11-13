@@ -16,7 +16,15 @@ require_once __DIR__ . '/includes/header.php';
 ?>
 <div id="app" data-travail="<?= htmlspecialchars($travailId) ?>">
     <h1 class="page-title">Détails du travail</h1>
-    <div class="travail">
+
+    <!-- l'API ne trouve pas ce travail -->
+    <div v-if="introuvable">
+        <p class="error">Ce travail n'existe pas.</p>
+        <a class="travail-retour" href="index.php">Retour aux travaux</a>
+    </div>
+
+    <!-- v-else-if="charge" : rien n'est affiche avant la reponse de l'API -->
+    <div v-else-if="charge" class="travail">
         <div>
             <h2 class="travail-titre">{{ travail.titre }}</h2>
             <p class="travail-info">{{ travail.description }}</p>
@@ -37,7 +45,7 @@ require_once __DIR__ . '/includes/header.php';
                     placeholder="ex. 2134567"
                     id="matricule"
                     >
-                <label class="labels" for="matricule">
+                <label class="labels" for="nom">
                     Nom :
                 </label>
                 <input
@@ -76,8 +84,9 @@ require_once __DIR__ . '/includes/header.php';
 
                 <p v-if="message" class="succes">{{ message }}</p>
                 <p v-if="erreur" class="error">{{ erreur }}</p>
+                <p v-if="travail.ouvert === 0" class="error">Ce travail est fermé, les disponibilités ne peuvent plus être modifiées.</p>
 
-                <button class="form-submit-button" type="submit">
+                <button class="form-submit-button" type="submit" :disabled="travail.ouvert === 0">
                     Enregistrer mes disponibilités
                 </button>
             </form>

@@ -123,3 +123,20 @@
 .succes {
     background-color: color-mix(in srgb, var(--success) 40%, transparent);
 }
+
+/* travail ferme : bouton desactive */
+.form-submit-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* travail introuvable : lien de retour */
+.travail-retour {
+    display: inline-block;
+    color: var(--black);
+    text-decoration: none;
+    background-color: var(--contrast);
+    padding: var(--control-padding);
+    border-radius: var(--control-radius);
+    margin-top: 8px;
+}

@@ -10,6 +10,9 @@ createApp({
         const disponibilites = ref([])
         const message = ref('')
         const erreur = ref('')
+        // charge : la reponse de l'API est arrivee / introuvable : l'API n'a pas trouve le travail
+        const charge = ref(false)
+        const introuvable = ref(false)
 
         // visite precedente : matricule et nom gardes dans localStorage
         const matricule = ref(localStorage.getItem('matricule') ?? '')
@@ -26,6 +29,10 @@ createApp({
 
         getTravail(travailId).then(data => {
             travail.value = data
+            charge.value = true
+            // getTravail retourne {} si l'API repond 404 -> pas d'id
+            introuvable.value = !data.id
+
             // retirer les creneaux gardes qui n'existent plus (supprimes par le prof)
             const idsExistants = (data.creneaux ?? []).map(creneau => creneau.id)
             creneaux.value = creneaux.value.filter(id => idsExistants.includes(id))
@@ -69,6 +76,8 @@ createApp({
             creneaux,
             message,
             erreur,
+            charge,
+            introuvable,
             matchDispos,
             enregistrer,
             dateFormat
