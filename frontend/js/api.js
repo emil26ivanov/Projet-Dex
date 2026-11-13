@@ -150,3 +150,22 @@ export async function getAdminTravaux() {
     }
 }
 
+export async function updateTravail(id, travail) {
+    const url = `${API_URL}/travaux/${id}`
+    return fetchAdmin(url, 'PUT', travail)
+}
+
+export async function addCreneau(travailId, creneau) {
+    const url = `${API_URL}/travaux/${travailId}/creneaux`
+    return fetchAdmin(url, 'POST', creneau)
+}
+
+export async function updateCreneau(id, creneau) {
+    const url = `${API_URL}/creneaux/${id}`
+    return fetchAdmin(url, 'PUT', creneau)
+}
+
+export async function deleteCreneau(id) {
+    const url = `${API_URL}/creneaux/${id}`
+    return fetchAdmin(url, 'DELETE')
+}
