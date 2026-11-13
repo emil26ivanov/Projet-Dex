@@ -4,6 +4,10 @@ main {
     margin-top: -56px;
 }
 
+[v-cloak] {
+    display: none;
+}
+
 #app {
     display: grid;
 }
