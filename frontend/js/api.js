@@ -67,8 +67,8 @@ export async function getDisponibilites(id) {
     }
 }
 
-export async function addDisponibilites(id, disponibilites) {
-    const url = `${API_URL}/travaux/${id}/disponibilites`
+export async function addDisponibilites(id, matricule, disponibilites) {
+    const url = `${API_URL}/travaux/${id}/disponibilites/${matricule}`
     try {
         const res = await fetch(url, {
             method: 'PUT',
@@ -77,14 +77,14 @@ export async function addDisponibilites(id, disponibilites) {
             },
             body: JSON.stringify(disponibilites)
         })
-        if (!res.ok) throw new Error("response error")
 
         const data = await res.json()
 
-        return data;
+        // ok + status pour savoir si c'est un 409 (ferme), 400, 404...
+        return { ok: res.ok, status: res.status, data }
     } catch (err) {
         console.error(err)
-        return null
+        return { ok: false, data: { error: "serveur injoignable" } }
     }
 }
 

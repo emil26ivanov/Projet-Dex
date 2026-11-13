@@ -73,8 +73,10 @@ require_once __DIR__ . '/includes/header.php';
                         </span>
                     </label>
                 </div>
-                
-            
+
+                <p v-if="message" class="succes">{{ message }}</p>
+                <p v-if="erreur" class="error">{{ erreur }}</p>
+
                 <button class="form-submit-button" type="submit">
                     Enregistrer mes disponibilités
                 </button>
