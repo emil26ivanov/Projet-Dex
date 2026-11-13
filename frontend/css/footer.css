@@ -8,3 +8,10 @@
     font-size: var(--small-text);
     color: var(--gray);
 }
+
+/* mobile */
+@media (max-width: 800px) {
+    .footer {
+        padding: 24px 16px;
+    }
+}

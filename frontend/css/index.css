@@ -91,3 +91,16 @@
 .travail-link:hover {
     background-color: color-mix(in srgb, var(--contrast) 80%, black);
 }
+
+/* mobile */
+@media (max-width: 800px) {
+    .page-title {
+        margin-top: 48px;
+    }
+
+    /* le select prend la place qui reste, meme avec un long titre de cours */
+    .filter-select {
+        flex: 1;
+        min-width: 0;
+    }
+}

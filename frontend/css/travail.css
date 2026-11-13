@@ -86,3 +86,23 @@
 .form-submit-button:hover {
     background-color: color-mix(in srgb, var(--contrast) 80%, black);
 }
+
+/* mobile */
+@media (max-width: 800px) {
+    .page-title {
+        margin-top: 48px;
+    }
+
+    /* description en haut, formulaire en dessous */
+    .travail {
+        grid-template-columns: 1fr;
+    }
+
+    .travail-form {
+        padding: 20px;
+    }
+
+    .inputs {
+        min-width: 0;
+    }
+}

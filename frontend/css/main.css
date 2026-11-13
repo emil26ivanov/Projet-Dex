@@ -71,3 +71,18 @@ select {
 a {
     font-family: var(--body-font);
 }
+
+/* mobile */
+@media (max-width: 800px) {
+    /* tailles plus petites partout, d'un coup */
+    :root {
+        --headings: 32px;
+        --titles: 24px;
+        --subtitles: 20px;
+        --body-text: 16px;
+    }
+
+    main {
+        margin: 0 16px;
+    }
+}
