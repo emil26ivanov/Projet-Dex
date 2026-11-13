@@ -247,6 +247,21 @@ app.post('/api/deconnexion', auth, (req, res) => {
     res.json({ message: "Déconnecté" })
 })
 
+// get admin travaux, admin can only see travaux he created
+app.get('/api/admin/travaux', auth, async (req, res) => {
+    try {
+        //sql
+        const sql = "SELECT travaux.*, cours.titre AS cours_titre FROM travaux JOIN cours ON travaux.cours_id = cours.id WHERE cours.utilisateur_id = ?"
+        //query
+        const [rows] = await db.query(sql, [req.utilisateurId])
+        //data
+        res.json(rows)
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ error: 'server error' })
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`)
 })
