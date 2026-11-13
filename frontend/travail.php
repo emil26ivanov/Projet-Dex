@@ -1,10 +1,20 @@
 <?php
 
+// id du travail dans l'url, vide s'il n'y en a pas
+$travailId = $_GET['travail'] ?? '';
+
+// format invalide -> page 404 (PHP ne verifie pas si le travail existe, c'est l'API)
+if (!is_string($travailId) || !preg_match('/^[a-z0-9-]{1,30}$/', $travailId)) {
+    http_response_code(404);
+    require __DIR__ . '/404.php';
+    exit;
+}
+
 $pageTitle = 'Travail';
 $pageCss = 'travail';
 require_once __DIR__ . '/includes/header.php';
 ?>
-<div id="app">
+<div id="app" data-travail="<?= htmlspecialchars($travailId) ?>">
     <h1 class="page-title">Détails du travail</h1>
     <div class="travail">
         <div>
