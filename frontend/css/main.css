@@ -7,6 +7,8 @@
     --white: #E5E9EC;
     --black: #323031;
     --gray: gray;
+    --danger: rgb(255, 150, 150);
+    --success: rgb(150, 220, 150);
     /*font sizes*/
     --headings: 48px;
     --titles: 32px;
