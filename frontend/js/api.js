@@ -88,3 +88,65 @@ export async function addDisponibilites(id, disponibilites) {
     }
 }
 
+export async function connexion(identifiant, motDePasse) {
+    const url = `${API_URL}/connexion`
+    try {
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ identifiant, motDePasse })
+        })
+
+        const data = await res.json()
+
+        return { ok: res.ok, data }
+    } catch (err) {
+        console.error(err)
+        return { ok: false, data: { error: "serveur injoignable" } }
+    }
+}
+
+async function fetchAdmin(url, method, body) {
+    const sessionToken = sessionStorage.getItem("token")
+    const options = {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionToken}`
+        }
+    }
+
+    if (body) {
+        options.body = JSON.stringify(body)
+    }
+
+    try {
+
+        const res = await fetch(url, options)
+        const data = await res.json()
+
+        return { ok: res.ok, status: res.status, data }
+
+    } catch (err) {
+        console.error(err)
+        return { ok: false, data: { error: "serveur injoignable" } }
+    }
+}
+
+export async function deconnexion() {
+    const url = `${API_URL}/deconnexion`
+    return fetchAdmin(url, 'POST')
+}
+
+export async function getAdminTravaux() {
+    const url = `${API_URL}/admin/travaux`
+    try {
+        return fetchAdmin(url, 'GET')
+    } catch (err) {
+        console.error(err)
+        return []
+    }
+}
+
