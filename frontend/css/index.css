@@ -33,7 +33,7 @@
 }
 
 .empty {
-    font-family: var(--small-text);
+    font-size: var(--small-text);
 }
 
 .cards {
