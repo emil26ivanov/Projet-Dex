@@ -167,18 +167,42 @@ app.get('/api/travaux/:id/disponibilites', async (req, res) => {
     }
 })
 
-// PUT /api/travaux/:id/disponibilites : remplace la reponse de cet etudiant pour ce travail
-app.put('/api/travaux/:id/disponibilites', async (req, res) => {
+// PUT /api/travaux/:id/disponibilites/:matricule : remplace la reponse de cet etudiant pour ce travail
+app.put('/api/travaux/:id/disponibilites/:matricule', async (req, res) => {
     try {
-        // get the id from url
+        // get the id + matricule from url
         const travailId = req.params.id
+        const matricule = req.params.matricule
 
         // get vals
-        const { matricule, nom, creneaux } = req.body
+        const { nom, creneaux } = req.body
+
+        // query travail
+        const sqlGet = "SELECT ouvert FROM travaux WHERE id = ?"
+        const [rows] = await db.query(sqlGet, [travailId])
+
+        // 404 and 409 checks
+        if (rows.length === 0) return res.status(404).json({ error: "Travail introuvable" })
+        if (rows[0].ouvert === 0) return res.status(409).json({ error: "Ce travail est fermé" })
 
         // check vals (400)
-        if (!matricule || !nom || !Array.isArray(creneaux)) {
-            return res.status(400).json({ error: "missing info" })
+        if (matricule.trim() === '') {
+            return res.status(400).json({ error: "Le matricule est obligatoire" })
+        }
+        if (typeof nom !== 'string' || nom.trim() === '') {
+            return res.status(400).json({ error: "Le nom est obligatoire" })
+        }
+        if (!Array.isArray(creneaux)) {
+            return res.status(400).json({ error: "Les créneaux doivent être une liste" })
+        }
+
+        // check creneaux belong to this travail (400)
+        const sqlIds = "SELECT id FROM creneaux WHERE travail_id = ?"
+        const [creneauxTravail] = await db.query(sqlIds, [travailId])
+        const idsValides = creneauxTravail.map(creneau => creneau.id)
+
+        if (!creneaux.every(id => idsValides.includes(id))) {
+            return res.status(400).json({ error: "Créneau invalide pour ce travail" })
         }
 
         // delete old answer
